@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="produto_19.mod_19_db::cv_produtos" applyPrivilegeType="NONE" dataCategory="DIMENSION" dimensionType="STANDARD" schemaVersion="3.0" outputViewType="Projection" cacheInvalidationPeriod="NONE" enforceSqlExecution="false">
+<descriptions defaultDescription="Produtos"/>
+<localVariables/>
+<variableMappings/>
+<dataSources>
+  <DataSource id="produto_19.mod_19_db::dados.Produtos">
+    <resourceUri>produto_19.mod_19_db::dados.Produtos</resourceUri>
+  </DataSource>
+  <DataSource id="produto_19.mod_19_db::dados.Categorias">
+    <resourceUri>produto_19.mod_19_db::dados.Categorias</resourceUri>
+  </DataSource>
+</dataSources>
+<calculationViews>
+  <calculationView xsi:type="Calculation:JoinView" id="Join_1" cardinality="CN_1" joinType="inner">
+    <viewAttributes>
+      <viewAttribute id="id">
+        <descriptions defaultDescription="id"/>
+      </viewAttribute>
+      <viewAttribute id="nome">
+        <descriptions defaultDescription="nome"/>
+      </viewAttribute>
+      <viewAttribute id="nome_categoria">
+        <descriptions defaultDescription="nome_1"/>
+      </viewAttribute>
+      <viewAttribute hidden="true" id="JOIN$to_categoria.id$id"/>
+    </viewAttributes>
+    <calculatedViewAttributes>
+      <calculatedViewAttribute id="nome_upper" datatype="NVARCHAR" length="20" expressionLanguage="SQL">
+        <formula>UPPER(&quot;nome&quot;)</formula>
+      </calculatedViewAttribute>
+    </calculatedViewAttributes>
+    <restrictedViewAttributes/>
+    <input node="produto_19.mod_19_db::dados.Produtos">
+      <mapping xsi:type="Calculation:AttributeMapping" target="id" source="id"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="nome" source="nome"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$to_categoria.id$id" source="to_categoria.id"/>
+    </input>
+    <input node="produto_19.mod_19_db::dados.Categorias">
+      <mapping xsi:type="Calculation:AttributeMapping" target="nome_categoria" source="nome"/>
+      <mapping xsi:type="Calculation:AttributeMapping" target="JOIN$to_categoria.id$id" source="id"/>
+    </input>
+    <joinAttribute name="JOIN$to_categoria.id$id"/>
+  </calculationView>
+</calculationViews>
+<logicalModel id="Join_1">
+  <attributes>
+    <attribute id="id" order="1" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="id"/>
+      <keyMapping columnObjectName="Join_1" columnName="id"/>
+    </attribute>
+    <attribute id="nome_upper" order="2" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="nome"/>
+      <keyMapping columnObjectName="Join_1" columnName="nome_upper"/>
+    </attribute>
+    <attribute id="nome_categoria" order="3" displayAttribute="false" attributeHierarchyActive="false">
+      <descriptions defaultDescription="nome_1"/>
+      <keyMapping columnObjectName="Join_1" columnName="nome_categoria"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes/>
+  <baseMeasures/>
+  <calculatedMeasures/>
+  <restrictedMeasures/>
+</logicalModel>
+<layout>
+  <shapes>
+    <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+      <upperLeftCorner x="40" y="85"/>
+    </shape>
+  
+    <shape expanded="true" modelObjectName="Join_1" modelObjectNameSpace="CalculationView">
+      <upperLeftCorner x="83" y="208"/>
+      <rectangleSize height="30" width="373"/>
+    </shape>
+    <shape modelObjectName="produto_19.mod_19_db::dados.Produtos" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="20" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+    <shape modelObjectName="produto_19.mod_19_db::dados.Categorias" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
+      <upperLeftCorner x="320" y="30"/>
+      <rectangleSize width="250"/>
+    </shape>
+  </shapes>
+</layout>
+</Calculation:scenario>

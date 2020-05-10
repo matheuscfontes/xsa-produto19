@@ -1,0 +1,25 @@
+namespace produto_19.mod_19_db;
+
+context dados {
+
+    /*@@layout{"layoutInfo":{"x":-661,"y":-184.5}}*/
+    entity Categorias {
+        key id   : Integer;
+            nome : String(30);
+    };
+
+    /*@@layout{"layoutInfo":{"x":-417,"y":-184.5}}*/
+    entity Produtos {
+        id           : Integer;
+        nome         : String(10);
+        to_categoria : association[1, 1..1] to dados.Categorias;
+    };
+
+    /*@@layout{"layoutInfo":{"x":-552,"y":-78.5}}*/
+    entity ty_admin {
+        criado_por : String(30);
+        criado_em  : LocalDate;
+        criado_as  : LocalTime;
+    };
+
+};

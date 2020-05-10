@@ -1,0 +1,27 @@
+ID: produto_19
+_schema-version: '2.0'
+version: 0.0.2
+modules:
+  - name: mod_19_web
+    type: html5
+    path: mod_19_web
+    parameters:
+      app-name: modulo_19_web
+      memory: 32M
+      disk-quota: 32M
+
+  - name: mod_19_db
+    type: hdb
+    path: mod_19_db
+    requires:
+     - name: hdi_mod_19_db
+
+
+resources:
+ - name: hdi_mod_19_db
+   parameters:
+      config:
+         schema: PRODUTO_19
+   properties:
+      hdi-container-name: ${service-name}
+   type: com.sap.xs.hdi-container
